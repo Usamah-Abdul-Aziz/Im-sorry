@@ -2,36 +2,29 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8">
-  <title>Untukmu, Sayang</title>
+  <title>Untukmu, Cintaku</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
     body {
-      background: linear-gradient(to bottom, #fff0f5, #ffe0b2);
+      background: linear-gradient(135deg, #fff0f5 0%, #ffe0b2 100%);
       font-family: 'Segoe UI', sans-serif;
-      overflow-x: hidden;
       color: #333;
+      min-height: 100vh;
+      overflow-x: hidden;
       transition: background 0.5s, color 0.5s;
+      position: relative;
     }
-
     header {
       text-align: center;
       padding: 60px 20px 30px;
     }
-
     header h1 {
       font-size: 2.8rem;
       color: #e91e63;
-      animation: fadeIn 1s ease forwards;
       letter-spacing: 2px;
       text-shadow: 1px 2px 8px #fff4;
+      animation: fadeIn 1.2s;
     }
-
     .open-btn, #darkModeBtn {
       display: block;
       margin: 30px auto 0;
@@ -42,25 +35,22 @@
       border: none;
       border-radius: 30px;
       cursor: pointer;
-      transition: background 0.3s, transform 0.2s ease;
+      transition: background 0.3s, transform 0.2s;
       box-shadow: 0 2px 8px #f8bbd0a0;
     }
-
     .open-btn:hover, #darkModeBtn:hover {
       background: #e91e63;
       transform: scale(1.05);
     }
-
     #darkModeBtn {
       margin-top: 10px;
       margin-bottom: 0;
       background: #b39ddb;
     }
-
     .letter-paper {
       opacity: 0;
-      transform: translateY(50px);
-      transition: all 0.8s ease;
+      transform: scale(0.95) translateY(50px);
+      transition: all 0.8s cubic-bezier(.4,2,.3,1);
       max-width: 720px;
       margin: 30px auto;
       padding: 35px;
@@ -70,22 +60,19 @@
       border-radius: 20px;
       box-shadow: 0 10px 25px rgba(0,0,0,0.15);
       white-space: pre-line;
-      min-height: 200px;
+      min-height: 220px;
       position: relative;
     }
-
     .letter-paper.show {
       opacity: 1;
-      transform: translateY(0);
+      transform: scale(1) translateY(0);
     }
-
     .gallery {
       max-width: 720px;
       margin: 50px auto;
       text-align: center;
-      animation: fadeIn 1s ease;
+      animation: fadeIn 1s;
     }
-
     .photo-frame {
       width: 100%;
       aspect-ratio: 3 / 2;
@@ -93,117 +80,132 @@
       border-radius: 20px;
       border: 8px solid #fce4ec;
       box-shadow: 0 6px 16px rgba(0,0,0,0.15);
-      margin-bottom: 25px;
+      margin-bottom: 15px;
       background: #fff;
       position: relative;
     }
-
     .gallery img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      transition: opacity 0.5s, transform 0.4s;
+      transition: opacity 0.5s, transform 0.5s;
       opacity: 1;
     }
     .gallery img.fade {
       opacity: 0;
+      transform: scale(1.08);
     }
-    .gallery img:hover {
-      transform: scale(1.05);
+    .gallery img.zoom {
+      animation: zoomIn 0.5s;
     }
-
+    @keyframes zoomIn {
+      0% { transform: scale(1.08);}
+      100% { transform: scale(1);}
+    }
     .gallery button {
       background: #e91e63;
       color: white;
       border: none;
-      padding: 10px 20px;
+      padding: 14px 32px;
       margin: 10px;
       border-radius: 30px;
       cursor: pointer;
+      font-size: 1.3rem;
       transition: background 0.3s;
-      font-size: 1rem;
     }
-
     .gallery button:hover {
       background: #c2185b;
     }
-
+    .caption {
+      color: #ad1457;
+      font-size: 1.08rem;
+      margin-bottom: 10px;
+      min-height: 24px;
+      font-style: italic;
+      letter-spacing: 0.5px;
+      text-shadow: 0 1px 6px #fff6;
+    }
     .hug-button {
       display: block;
       margin: 50px auto;
       background: #ff4081;
       border: none;
-      padding: 16px 40px;
+      padding: 18px 44px;
       font-size: 1.2rem;
       border-radius: 40px;
       color: white;
       cursor: pointer;
-      transition: transform 0.2s ease, background 0.3s;
+      transition: transform 0.2s, background 0.3s;
       box-shadow: 0 2px 8px #f8bbd0a0;
     }
-
     .hug-button:hover {
       background: #d81b60;
       transform: scale(1.05);
     }
-
     .popup {
       position: fixed;
       top: 40%;
       left: 50%;
       transform: translate(-50%, -50%);
       background: #fff0f5;
-      padding: 25px 30px;
+      padding: 30px 36px;
       border-radius: 20px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.2);
       display: none;
       z-index: 999;
       text-align: center;
-      animation: fadein 0.3s ease;
-      font-size: 1.2rem;
+      animation: fadein 0.4s;
+      font-size: 1.25rem;
+      color: #ad1457;
     }
-
     @keyframes fadein {
-      from { opacity: 0; transform: translate(-50%, -55%); }
-      to { opacity: 1; transform: translate(-50%, -50%); }
+      from { opacity: 0; transform: translate(-50%, -55%);}
+      to { opacity: 1; transform: translate(-50%, -50%);}
     }
-
     @keyframes fadeIn {
-      0% { opacity: 0; transform: translateY(-20px); }
-      100% { opacity: 1; transform: translateY(0); }
+      0% { opacity: 0; transform: translateY(-20px);}
+      100% { opacity: 1; transform: translateY(0);}
     }
-
     .heart {
-      width: 20px;
-      height: 20px;
+      width: 22px;
+      height: 22px;
       position: fixed;
-      background-color: red;
+      background-color: #ff69b4;
       transform: rotate(45deg);
       animation: fall 7s linear infinite;
       z-index: 0;
       pointer-events: none;
+      opacity: 0.7;
     }
-
     .heart::before,
     .heart::after {
       content: '';
-      width: 20px;
-      height: 20px;
-      background-color: red;
+      width: 22px;
+      height: 22px;
+      background-color: #ff69b4;
       border-radius: 50%;
       position: absolute;
     }
-
-    .heart::before { top: -10px; left: 0; }
-    .heart::after { left: -10px; top: 0; }
-
+    .heart::before { top: -11px; left: 0;}
+    .heart::after { left: -11px; top: 0;}
     @keyframes fall {
-      0% { top: -10%; opacity: 1; }
-      100% { top: 110%; opacity: 0; }
+      0% { top: -10%; opacity: 0.7;}
+      100% { top: 110%; opacity: 0;}
     }
-
+    .bokeh {
+      position: fixed;
+      pointer-events: none;
+      z-index: 0;
+      border-radius: 50%;
+      opacity: 0.13;
+      background: #e91e63;
+      animation: bokehMove 12s linear infinite;
+    }
+    @keyframes bokehMove {
+      0% { transform: translateY(0);}
+      100% { transform: translateY(120vh);}
+    }
     audio { display: none; }
-
     /* Dark mode */
     .dark-mode {
       background: linear-gradient(to bottom, #232526, #414345) !important;
@@ -231,67 +233,76 @@
       background: #222 !important;
       border-color: #b39ddb !important;
     }
-
     /* Responsive */
     @media (max-width: 600px) {
-      .letter-paper, .gallery { padding: 10px; }
-      .photo-frame { border-width: 4px; }
-      .hug-button, .open-btn, .gallery button, #darkModeBtn { font-size: 1rem; padding: 10px 18px; }
-      header h1 { font-size: 2rem; }
+      .letter-paper, .gallery { padding: 10px;}
+      .photo-frame { border-width: 4px;}
+      .hug-button, .open-btn, .gallery button, #darkModeBtn { font-size: 1rem; padding: 10px 18px;}
+      header h1 { font-size: 2rem;}
+      .popup { font-size: 1.05rem; padding: 18px 8px;}
     }
   </style>
 </head>
 <body>
-
 <audio autoplay loop>
   <source src="lagu.mp3" type="audio/mp3">
 </audio>
-
 <header>
   <h1>Untukmu, Cintaku 💌</h1>
 </header>
-
 <button id="darkModeBtn" class="open-btn" style="margin-bottom:10px;">🌙 Dark Mode</button>
-
 <button class="open-btn" onclick="showLetter()">📨 Buka Surat</button>
-
 <div class="letter-paper" id="surat">
   <p id="typeLetter"></p>
 </div>
-
 <div class="gallery">
   <div class="photo-frame">
     <img id="photo" src="foto1.jpg" alt="Kenangan Kita 1">
   </div>
+  <div class="caption" id="caption"></div>
   <button onclick="prevSlide()" aria-label="Foto sebelumnya">⏮ Sebelumnya</button>
   <button onclick="nextSlide()" aria-label="Foto selanjutnya">Selanjutnya ⏭</button>
 </div>
-
 <button class="hug-button" onclick="sendHug()">💗 Kirim Peluk</button>
-
 <div class="popup" id="popupPeluk">
-  💞 Sending big hug! <br><br>
-  Aku cinta kamu... Terima kasih sudah bertahan sejauh ini 🤗
+  💞 Peluk hangat untukmu! <br><br>
+  Aku ingin kamu tahu, kamu tidak pernah sendiri. Aku selalu ada, mencintai dan mendukungmu, apapun yang terjadi. 🤗
 </div>
-
 <script>
-  // Suara ketikan (gunakan link bebas copyright)
+  // Efek bokeh partikel
+  function spawnBokeh() {
+    for (let i = 0; i < 12; i++) {
+      let b = document.createElement('div');
+      b.className = 'bokeh';
+      b.style.width = b.style.height = (30 + Math.random()*40) + 'px';
+      b.style.left = (Math.random()*100) + 'vw';
+      b.style.top = (-10 - Math.random()*30) + 'vh';
+      b.style.background = `radial-gradient(circle at 30% 30%, #e91e63 0%, #fff0f5 100%)`;
+      b.style.animationDuration = (8 + Math.random()*8) + 's';
+      document.body.appendChild(b);
+      setTimeout(()=>b.remove(), 13000);
+    }
+  }
+  spawnBokeh();
+  setInterval(spawnBokeh, 9000);
+
+  // Suara ketikan
   const typeSound = new Audio("https://cdn.pixabay.com/audio/2022/07/26/audio_124bfa4c7b.mp3");
 
+  // Surat lebih panjang & menyentuh
   const letterText = `Sayangku...
 
-Maafkan aku. I'm sorry for everything. I'm sorry belum bisa menjadi yang terbaik untukmu. 
-Aku ingin kamu tahu betapa berharganya dirimu bagiku. 
-Setiap hari bersamamu adalah anugerah, dan aku berjanji akan terus berusaha menjadi yang terbaik untukmu.
-Aku tahu aku sudah banyak nyakitin kamu, dan aku ingin kamu tahu betapa aku menyesalinya. 
-Aku ingin kita bisa tetap bersama, membangun kembali apa yang telah kita miliki. 
-Aku mencintaimu lebih dari kata-kata bisa ungkapkan.
-I love you honeyy more than anything in this world. 
-Kamu adalah segalanya bagiku, dan aku akan selalu berusaha untuk membuatmu bahagia. 
-Terima kasih sudah menjadi bagian dari hidupku. 
-Aku mencintaimu sekarang dan selamanya.
+Maafkan aku. I'm sorry for everything. I'm sorry belum bisa menjadi yang terbaik untukmu. Aku ingin kamu tahu betapa berharganya dirimu bagiku. 
 
-Love you always.
+Setiap hari bersamamu adalah anugerah, dan aku berjanji akan terus berusaha menjadi yang terbaik untukmu. Aku tahu aku sudah banyak nyakitin kamu, dan aku ingin kamu tahu betapa aku menyesalinya. 
+
+Aku ingin kita bisa tetap bersama, membangun kembali apa yang telah kita miliki. Aku mencintaimu lebih dari kata-kata bisa ungkapkan. I love you honeyy more than anything in this world. 
+
+Kamu adalah segalanya bagiku, dan aku akan selalu berusaha untuk membuatmu bahagia. 
+
+Terima kasih sudah menjadi bagian dari hidupku.  Aku mencintaimu sekarang dan selamanya.
+
+Love you always,  
 Your Baby 💗`;
 
   let i = 0;
@@ -303,10 +314,9 @@ Your Baby 💗`;
         typeSound.play();
       }
       i++;
-      setTimeout(typeLetter, 40);
+      setTimeout(typeLetter, 36);
     }
   }
-
   function showLetter() {
     const surat = document.getElementById("surat");
     surat.classList.add("show");
@@ -315,45 +325,57 @@ Your Baby 💗`;
     setTimeout(typeLetter, 400);
   }
 
-  // Galeri dengan efek fade
-  const images = ["foto1.jpg", "foto2.jpg", "foto3.jpg", "foto4.jpg", "foto5.jpg", "foto6.jpg"];
+  // Galeri dengan caption & efek zoom
+  const images = [
+    {src:"foto1.jpg", caption:"Our firs date. I will never forget this moment."},
+    {src:"foto2.jpg", caption:"We always spend time together."},
+    {src:"foto3.jpg", caption:"Simple things but full of memory."},
+    {src:"foto4.jpg", caption:"Second date. Remember how early we arrived?"},
+    {src:"foto5.jpg", caption:"It's always fun when we are together."},
+    {src:"foto6.jpg", caption:"I'm so pourd of you."}
+  ];
   let current = 0;
   const photo = document.getElementById("photo");
-
+  const caption = document.getElementById("caption");
   function showPhoto(idx) {
     photo.classList.add("fade");
     setTimeout(() => {
-      photo.src = images[idx];
+      photo.src = images[idx].src;
       photo.alt = "Kenangan Kita " + (idx + 1);
+      caption.textContent = images[idx].caption;
       photo.classList.remove("fade");
-    }, 300);
+      photo.classList.add("zoom");
+      setTimeout(()=>photo.classList.remove("zoom"), 500);
+    }, 320);
   }
-
   function nextSlide() {
     current = (current + 1) % images.length;
     showPhoto(current);
   }
-
   function prevSlide() {
     current = (current - 1 + images.length) % images.length;
     showPhoto(current);
   }
+  // Inisialisasi caption awal
+  caption.textContent = images[0].caption;
 
-  // Peluk Virtual - hati tidak menumpuk
+  // Peluk Virtual - hati lebih variatif
   function sendHug() {
     const popup = document.getElementById("popupPeluk");
     popup.style.display = "block";
     navigator.vibrate?.(300);
-    for (let i = 0; i < 20; i++) {
+    for (let i = 0; i < 24; i++) {
       const heart = document.createElement("div");
       heart.className = "heart";
       heart.style.left = Math.random() * 100 + 'vw';
       heart.style.animationDuration = (3 + Math.random() * 3) + 's';
       heart.style.top = Math.random() * 100 + 'vh';
+      heart.style.backgroundColor = Math.random() > 0.5 ? "#ff69b4" : "#e91e63";
+      heart.style.opacity = 0.5 + Math.random()*0.5;
       document.body.appendChild(heart);
       setTimeout(() => heart.remove(), 6000);
     }
-    setTimeout(() => popup.style.display = "none", 5000);
+    setTimeout(() => popup.style.display = "none", 5200);
   }
 
   // Hati background tidak menumpuk
@@ -364,6 +386,7 @@ Your Baby 💗`;
       heart.className = "heart bg";
       heart.style.left = Math.random() * 100 + 'vw';
       heart.style.animationDuration = (5 + Math.random() * 5) + 's';
+      heart.style.backgroundColor = Math.random() > 0.5 ? "#ff69b4" : "#e91e63";
       document.body.appendChild(heart);
       setTimeout(() => heart.remove(), 11000);
     }
@@ -376,7 +399,6 @@ Your Baby 💗`;
   darkBtn.onclick = function() {
     document.body.classList.toggle("dark-mode");
   };
-</script>
-
-</body>
-</html>
+  </script>
+  </body>
+  </html>
